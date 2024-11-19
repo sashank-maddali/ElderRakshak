@@ -17,10 +17,16 @@ warnings.filterwarnings("ignore")
 device = torch.device("cpu")
 
 # Load phishing model
-phishing_model_path = r"pickle\model_new.pkl" #changed to relative path 
+phishing_model_path = r"pickle/model_new.pkl" #changed to relative path 
 with open(phishing_model_path, "rb") as file:
     gbc = pickle.load(file)
 
+# error checking temp1
+if not os.path.exists(phishing_model_path):
+    st.error(f"File not found: {phishing_model_path}. Check if the file is uploaded and the path is correct.")
+else:
+    with open(phishing_model_path, "rb") as file:
+        gbc = pickle.load(file)
 # Extract URLs from text
 def extract_urls(text):
     # Use regular expression to find URLs starting with 'http' or 'https'
