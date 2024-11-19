@@ -17,7 +17,7 @@ warnings.filterwarnings("ignore")
 device = torch.device("cpu")
 
 # Load phishing model
-phishing_model_path = r"C:\Users\sasha\Downloads\PhishingLogicER\pickle\model_new.pkl"
+phishing_model_path = r"pickle\model_new.pkl" #changed to relative path 
 with open(phishing_model_path, "rb") as file:
     gbc = pickle.load(file)
 
@@ -42,7 +42,7 @@ def predict_link(link):
 
 
 # Load smishing model and tokenizer
-smishing_model_path = r"C:\Users\sasha\Downloads\PhishingLogicER\smishing_model"
+smishing_model_path = r"smishing_model" #changed to relative path 
 smishing_model = AutoModelForSequenceClassification.from_pretrained(smishing_model_path, trust_remote_code=True).to(device)
 tokenizer = AutoTokenizer.from_pretrained(smishing_model_path, trust_remote_code=True)
 
