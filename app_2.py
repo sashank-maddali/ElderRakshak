@@ -85,9 +85,18 @@ if option == 'Enter URL':
         else:
             st.warning("Please enter a URL.")
 
-elif option == 'Smishing (SMS Text)':
-    # Input SMS text from user
-    sms_text = st.text_area("Enter the SMS text:")
+elif option == "Smishing (SMS Text)":
+    # Add a textarea for SMS text
+    st.markdown(
+        """
+        <textarea id="sms-textarea" style="width: 100%; height: 100px;" placeholder="Enter the SMS text here..."></textarea>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # Get content of the textarea using Streamlit
+    sms_text = st.text_area("Detected SMS Text (editable):", key="sms_input")
+
     if st.button("Predict SMS"):
         if sms_text:
             prob_smishing, prob_not_smishing = predict_smishing(sms_text)
@@ -97,7 +106,6 @@ elif option == 'Smishing (SMS Text)':
                 st.success(f"This SMS is not a smishing attempt ({prob_not_smishing * 100:.2f}% confidence).")
         else:
             st.warning("Please enter the SMS text.")
-
 # Run the Streamlit application
 if __name__ == "__main__":
     st._is_running_with_streamlit = True
