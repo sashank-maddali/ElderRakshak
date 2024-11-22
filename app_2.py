@@ -54,7 +54,7 @@ def load_model(phishing_model_path: str) -> object:
         return None
 
 # Using environment variable for model path
-phishing_model_path = r"pickle/model_new.pkl"
+phishing_model_path = "pickle/model_new.pkl"
 gbc = load_model(phishing_model_path)
 
 # Translator for multi-language support, using Google Translate API, free has API rate limits
@@ -98,7 +98,7 @@ def predict_link(link: str) -> tuple:
         raise
 
 # Loading smishing model and tokenizer
-smishing_model_path = r"smishing_model"
+smishing_model_path = "smishing_model"
 smishing_model = AutoModelForSequenceClassification.from_pretrained(smishing_model_path, trust_remote_code=True).to(device)
 tokenizer = AutoTokenizer.from_pretrained(smishing_model_path, trust_remote_code=True)
 
